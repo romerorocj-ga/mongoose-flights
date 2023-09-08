@@ -1,14 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const flightCtrl = require('../controllers/flights');
+const flightCtrl = require("../controllers/flights");
 
-// Route to display the form for adding a new flight
-router.get('/new', flightCtrl.newFlight);
+router.get("/", flightCtrl.indexFlights);
 
-// Route to handle the submission of the new flight form
-router.post('/', flightCtrl.createFlight);
+router.get("/new", flightCtrl.newFlight);
 
-// Route to display a list of all flights (index functionality)
-router.get('/', flightCtrl.indexFlights);
+router.get("/:id", flightCtrl.showFlight);
+
+router.post("/", flightCtrl.createFlight);
 
 module.exports = router;

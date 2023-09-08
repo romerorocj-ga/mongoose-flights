@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<h2>Flight Details</h2>
+<p>Airline: <%= flight.airline %></p>
+<p>Airport: <%= flight.airport %></p>
+<p>Flight No.: <%= flight.flightNo %></p>
+<p>Departure Date/Time: <%= new Date(flight.departs).toLocaleString() %></p>
+
+<h3>Destinations:</h3>
+<ul>
+  <% flight.destinations.forEach(function (destination) { %>
+  <li>Airport: <%= destination.airport %></li>
+  <li>
+    Arrival Date/Time: <%= new Date(destination.arrival).toLocaleString() %>
+  </li>
+  <% }); %>
+</ul>
+
+<a href="/flights">Back to Flight List</a>
+
+<%- include('../partials/footer') %>
