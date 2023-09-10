@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
 <h2>Add Destination for Flight</h2>
-<form action="/flights/<%= flightId %>/destinations" method="POST">
+<form action="/destinations/<%= flightId %>" method="POST">
   <label for="airport">Airport:</label>
   <select name="airport" id="airport">
     <option value="AUS">Austin-Bergstrom International Airport (AUS)</option>

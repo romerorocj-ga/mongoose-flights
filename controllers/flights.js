@@ -1,3 +1,4 @@
+const Ticket = require("../models/ticket");
 const Flight = require("../models/flight");
 
 function newFlight(req, res) {
@@ -23,11 +24,17 @@ async function createFlight(req, res) {
 
 async function showFlight(req, res) {
   try {
-    const flight = await Flight.findById(req.params.id);
+    const flight = await Flight.findById(req.params.id).populate(
+      "destinations"
+    );
+
     if (!flight) {
       return res.status(404).send("Flight not found");
     }
-    res.render("flight/details", { flight });
+
+    const tickets = await Ticket.find({ flight: flight._id });
+
+    res.render("flight/details", { flight, tickets });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

@@ -7,15 +7,28 @@
 <p>Departure Date/Time: <%= new Date(flight.departs).toLocaleString() %></p>
 
 <h3>Destinations:</h3>
+<a href="/destinations/<%= flight._id %>/new">Add Destination</a>
 <ul>
-  <% flight.destinations.forEach(function (destination) { %>
+  <% if (flight.destinations && flight.destinations.length > 0) { %> <%
+  flight.destinations.forEach(function (destination) { %>
   <li>Airport: <%= destination.airport %></li>
   <li>
     Arrival Date/Time: <%= new Date(destination.arrival).toLocaleString() %>
   </li>
-  <% }); %>
+  <% }); %> <% } else { %>
+  <li>No destinations available for this flight.</li>
+  <% } %>
 </ul>
 
-<a href="/flights">Back to Flight List</a>
+<h3>Tickets:</h3>
+<a href="/flights/<%= flight._id %>/tickets/new" class="btn btn-primary"
+  >New Ticket</a
+>
+<ul>
+  <% tickets.forEach(function (ticket) { %>
+  <li>Seat: <%= ticket.seat %></li>
+  <li>Price: <%= ticket.price %></li>
+  <% }); %>
+</ul>
 
 <%- include('../partials/footer') %>
